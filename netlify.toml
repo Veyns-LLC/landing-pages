@@ -14,6 +14,36 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Affiliate landing page. It is a separate Netlify site (affilate-lp.netlify.app,
+# repo Veyns-LLC/affilate-lp-page) proxied onto this domain so it lives at
+# veyns.app/affiliate. That site builds with BASE_PATH=/affiliate/, so its asset
+# URLs already carry this prefix.
+#
+# Two rules are needed: Netlify's "/affiliate/*" does NOT match a bare
+# "/affiliate", which would otherwise fall through to the SPA fallback below and
+# serve the waiting-list page instead.
+[[redirects]]
+  from = "/affiliate"
+  to = "https://affilate-lp.netlify.app/"
+  status = 200
+
+[[redirects]]
+  from = "/affiliate/*"
+  to = "https://affilate-lp.netlify.app/:splat"
+  status = 200
+
+# The repo name and early links spell it "affilate". Send that to the canonical
+# path rather than leaving it on the SPA fallback.
+[[redirects]]
+  from = "/affilate"
+  to = "/affiliate"
+  status = 301
+
+[[redirects]]
+  from = "/affilate/*"
+  to = "/affiliate/:splat"
+  status = 301
+
 # SPA fallback for any non-asset path.
 [[redirects]]
   from = "/*"
