@@ -44,6 +44,14 @@ function devSubscribeApi(env: Record<string, string>): Plugin {
           /* fall through to validation below */
         }
 
+        // _loops.ts reads the list ids off process.env, which loadEnv does not
+        // populate — without this, dev silently skips the mailing list while
+        // production adds it, so the two disagree about what a signup does.
+        // Guarded: assigning undefined to process.env stores the *string*
+        // "undefined", which is truthy and would be sent to Loops as a list id.
+        if (env.LOOPS_MAILING_LIST_ID) process.env.LOOPS_MAILING_LIST_ID ??= env.LOOPS_MAILING_LIST_ID
+        if (env.LOOPS_AFFILIATE_LIST_ID) process.env.LOOPS_AFFILIATE_LIST_ID ??= env.LOOPS_AFFILIATE_LIST_ID
+
         // Loaded through Vite so TS is transpiled on the fly.
         const { subscribe } = await server.ssrLoadModule('/api/_loops.ts')
         const { status, body } = await subscribe(parsed, env.LOOPS_API_KEY)
@@ -74,6 +82,15 @@ export default defineConfig(({ mode }) => {
       alias: {
         // Alias @ to the src directory
         '@': path.resolve(__dirname, './src'),
+      },
+    },
+
+    build: {
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          affiliate: path.resolve(__dirname, 'affiliate/index.html'),
+        },
       },
     },
 

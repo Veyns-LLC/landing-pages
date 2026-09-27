@@ -14,6 +14,32 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# The affiliate landing page is a second Vite entry, built to
+# dist/affiliate/index.html. Netlify resolves that for /affiliate by itself;
+# these rewrites are a guard so the SPA fallback below can never answer an
+# affiliate URL with the waiting-list page. They are rewrites, not redirects,
+# so the visible URL stays /affiliate.
+[[redirects]]
+  from = "/affiliate"
+  to = "/affiliate/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/affiliate/*"
+  to = "/affiliate/index.html"
+  status = 200
+
+# The repo name and early links spell it "affilate".
+[[redirects]]
+  from = "/affilate"
+  to = "/affiliate"
+  status = 301
+
+[[redirects]]
+  from = "/affilate/*"
+  to = "/affiliate"
+  status = 301
+
 # SPA fallback for any non-asset path.
 [[redirects]]
   from = "/*"

@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+/* Scoped to this directory so the affiliate bundle carries only its own
+   utilities, and the main site's shadcn theme stays out of it. */
+@import 'tailwindcss' source(none);
+@source './**/*.{ts,tsx}';
+
+
+@theme {
+  --font-family-sans: 'Inter', sans-serif;
+  --font-family-mono: 'DM Mono', monospace;
+
+  --color-veyns: #2B5BA8;
+  --color-veyns-dark: #1A3D7A;
+  --color-veyns-mid: #5B8DD9;
+  --color-veyns-light: #EEF4FF;
+  --color-veyns-pale: #F5F8FF;
+  --color-veyns-accent: #A8C4E0;
+  --color-navy: #0D1B2A;
+  --color-charcoal: #1F2937;
+  --color-body: #374151;
+  --color-muted: #6B7280;
+  --color-border: #E4EBF9;
+  --color-surface: #F7F9FF;
+  --color-green: #22c55e;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1F2937;
+  background: #ffffff;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E4EBF9 transparent;
+}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-thumb { background: #E4EBF9; border-radius: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* Waitlist form transitions */
+@keyframes veyns-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes veyns-pop {
+  0%   { opacity: 0; transform: scale(0.65); }
+  60%  { transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.animate-rise { animation: veyns-rise 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-pop  { animation: veyns-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise, .animate-pop, .animate-pulse {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}
