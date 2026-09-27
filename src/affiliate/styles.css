@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=Inter:wght@400;500;600;700&display=swap');
 
 /* Scoped to this directory so the affiliate bundle carries only its own
    utilities, and the main site's shadcn theme stays out of it. */
@@ -8,30 +7,38 @@
 
 
 @theme {
-  --font-family-sans: 'Inter', sans-serif;
-  --font-family-mono: 'DM Mono', monospace;
+  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-family-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
 
-  --color-veyns: #2B5BA8;
-  --color-veyns-dark: #1A3D7A;
-  --color-veyns-mid: #5B8DD9;
-  --color-veyns-light: #EEF4FF;
-  --color-veyns-pale: #F5F8FF;
-  --color-veyns-accent: #A8C4E0;
-  --color-navy: #0D1B2A;
+  --color-veyns: #1B4B9B;
+  --color-veyns-dark: #123468;
+  --color-veyns-mid: #3B72AA;
+  --color-veyns-light: #E4EEF9;
+  --color-veyns-pale: #F3F8FC;
+  --color-veyns-accent: #A8CBEA;
+  --color-navy: #0E2347;
   --color-charcoal: #1F2937;
   --color-body: #374151;
   --color-muted: #6B7280;
-  --color-border: #E4EBF9;
-  --color-surface: #F7F9FF;
+  --color-border: #DCE8F6;
+  --color-surface: #F5F9FD;
   --color-green: #22c55e;
 }
 
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #1F2937;
   background: #ffffff;
+}
+
+/* Mirrors the h1/h2/h3 rule in src/styles/theme.css so both pages share one
+   typographic voice: Newsreader for headings, Inter for everything else. */
+h1, h2, h3 {
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 * {
