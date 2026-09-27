@@ -1,55 +1,14 @@
 import { useState, useEffect, type FormEvent } from 'react'
 
+import { VeynsLogo } from '../app/components/VeynsLogo'
 import { joinWaitlist } from './loops'
 
 // ─── Brand tokens ──────────────────────────────────────────────────────────────
-const VEYNS_BLUE = '#2B5BA8'
-const VEYNS_DARK = '#1A3D7A'
-const VEYNS_LIGHT = '#EEF4FF'
-const VEYNS_ACCENT = '#A8C4E0'
-const NAVY = '#0D1B2A'
-
-// ─── Logo SVG ─────────────────────────────────────────────────────────────────
-function VeynsIconMark({ primary = VEYNS_BLUE, secondary = VEYNS_ACCENT, size = 38 }: { primary?: string; secondary?: string; size?: number }) {
-  return (
-    <svg viewBox="0 0 114 108" width={size} height={size * 108 / 114} fill="none" aria-hidden="true">
-      {/* Left arm */}
-      <path d="M0 6 L25 6 L56 98 L31 98 Z" fill={primary} />
-      {/* Right arm */}
-      <path d="M31 98 L56 98 L90 6 L65 6 Z" fill={primary} />
-      {/* Central molecule node */}
-      <circle cx="72" cy="27" r="4.5" fill={secondary} />
-      {/* Upper-left arm + node */}
-      <line x1="69" y1="23" x2="58" y2="10" stroke={secondary} strokeWidth="2.3" strokeLinecap="round" />
-      <circle cx="57" cy="9" r="4" fill={secondary} />
-      {/* Right arm to hexagon */}
-      <line x1="76" y1="25" x2="87" y2="18" stroke={secondary} strokeWidth="2.3" strokeLinecap="round" />
-      {/* Benzene hexagon */}
-      <path d="M87 8 L97 13 L97 24 L87 29 L77 24 L77 13 Z" stroke={secondary} strokeWidth="2" fill="none" strokeLinejoin="round" />
-      {/* Hexagon right arm */}
-      <line x1="97" y1="24" x2="107" y2="29" stroke={secondary} strokeWidth="2.3" strokeLinecap="round" />
-      <circle cx="108" cy="30" r="3.8" fill={secondary} />
-      {/* Hexagon top arm */}
-      <line x1="87" y1="8" x2="83" y2="0" stroke={secondary} strokeWidth="2.3" strokeLinecap="round" />
-      <circle cx="82" cy="0" r="3.5" fill={secondary} />
-    </svg>
-  )
-}
-
-function VeynsLogo({ variant = 'dark', size = 'md' }: { variant?: 'dark' | 'light'; size?: 'sm' | 'md' | 'lg' }) {
-  const iconSize = { sm: 26, md: 34, lg: 46 }[size]
-  const textCls = { sm: 'text-[13px]', md: 'text-[16px]', lg: 'text-[22px]' }[size]
-  const primary = variant === 'light' ? '#ffffff' : VEYNS_BLUE
-  const secondary = variant === 'light' ? 'rgba(255,255,255,0.65)' : VEYNS_ACCENT
-  return (
-    <div className="flex items-center gap-2 select-none">
-      <VeynsIconMark primary={primary} secondary={secondary} size={iconSize} />
-      <span className={`font-bold tracking-[0.22em] uppercase ${textCls}`} style={{ color: primary, fontFamily: 'Inter, sans-serif' }}>
-        VEYNS
-      </span>
-    </div>
-  )
-}
+const VEYNS_BLUE = '#1B4B9B'
+const VEYNS_DARK = '#123468'
+const VEYNS_LIGHT = '#E4EEF9'
+const VEYNS_ACCENT = '#A8CBEA'
+const NAVY = '#0E2347'
 
 // ─── Nav ──────────────────────────────────────────────────────────────────────
 function Nav() {
@@ -73,11 +32,11 @@ function Nav() {
       style={{
         background: scrolled ? 'rgba(255,255,255,0.95)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid #E4EBF9' : '1px solid transparent',
+        borderBottom: scrolled ? '1px solid #DCE8F6' : '1px solid transparent',
       }}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        <VeynsLogo />
+        <VeynsLogo className="h-7 w-auto" />
         <nav className="hidden md:flex items-center gap-8">
           {[['how-it-works', 'How It Works'], ['why-veyns', 'Why Veyns'], ['faq', 'FAQ']].map(([id, label]) => (
             <button
@@ -138,7 +97,7 @@ function PhoneMockup() {
         style={{ boxShadow: '0 8px 32px rgba(43,91,168,0.12)' }}
       >
         <p className="text-muted text-[11px] font-medium mb-0.5">This Month</p>
-        <p className="text-navy text-lg font-bold font-mono">$250.00</p>
+        <p className="text-navy text-lg font-bold tabular-nums">$250.00</p>
         <p className="text-green text-[11px] font-medium mt-0.5 flex items-center gap-0.5">
           <span>↑</span> +18% vs last
         </p>
@@ -150,7 +109,7 @@ function PhoneMockup() {
         style={{ boxShadow: '0 8px 32px rgba(43,91,168,0.12)' }}
       >
         <p className="text-muted text-[11px] font-medium mb-0.5">Referrals</p>
-        <p className="text-navy text-lg font-bold font-mono">34</p>
+        <p className="text-navy text-lg font-bold tabular-nums">34</p>
         <p className="text-[11px] font-medium" style={{ color: VEYNS_BLUE }}>Active users</p>
       </div>
 
@@ -159,7 +118,7 @@ function PhoneMockup() {
         className="relative w-64 h-[520px] rounded-[44px] overflow-hidden"
         style={{
           background: NAVY,
-          border: `2px solid #1a2d4a`,
+          border: `2px solid #1B3A63`,
           boxShadow: `0 40px 96px rgba(13,27,42,0.4), 0 0 0 1px rgba(255,255,255,0.04) inset`,
         }}
       >
@@ -169,24 +128,24 @@ function PhoneMockup() {
         <div className="absolute inset-0 overflow-y-auto p-4" style={{ scrollbarWidth: 'none' }}>
           {/* Status + header */}
           <div className="flex justify-between items-center mb-4 pt-9 px-1">
-            <span className="text-white/40 text-[11px] font-mono">9:41</span>
-            <VeynsLogo variant="light" size="sm" />
+            <span className="text-white/40 text-[11px] tabular-nums">9:41</span>
+            <VeynsLogo className="h-3.5 w-auto" primary="#ffffff" secondary="rgba(255,255,255,0.68)" />
             <div className="w-8" />
           </div>
 
           {/* Health score card */}
-          <div className="rounded-2xl p-3.5 mb-2.5" style={{ background: '#132035' }}>
+          <div className="rounded-2xl p-3.5 mb-2.5" style={{ background: '#15305C' }}>
             <div className="flex justify-between items-center">
               <div>
                 <p className="text-white/50 text-[11px] mb-1">Health Score</p>
                 <div className="flex items-baseline gap-1.5">
-                  <span className="text-3xl font-black text-white font-mono">87</span>
+                  <span className="text-3xl font-black text-white tabular-nums">87</span>
                   <span className="text-green text-xs font-semibold">↑ +3</span>
                 </div>
                 <p className="text-white/40 text-[11px] mt-0.5">Excellent range</p>
               </div>
               <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                <circle cx="28" cy="28" r="21" stroke="#1e3a5f" strokeWidth="5.5" />
+                <circle cx="28" cy="28" r="21" stroke="#27508A" strokeWidth="5.5" />
                 <circle cx="28" cy="28" r="21" stroke={VEYNS_BLUE} strokeWidth="5.5"
                   strokeDasharray="116 31" strokeDashoffset="29" strokeLinecap="round"
                   transform="rotate(-90 28 28)" />
@@ -197,19 +156,19 @@ function PhoneMockup() {
 
           {/* Two metric cards */}
           <div className="grid grid-cols-2 gap-2 mb-2.5">
-            <div className="rounded-xl p-3" style={{ background: '#132035' }}>
+            <div className="rounded-xl p-3" style={{ background: '#15305C' }}>
               <p className="text-white/50 text-[10px] mb-1">Heart Rate</p>
-              <p className="text-white text-lg font-bold font-mono">72 <span className="text-[10px] font-normal text-white/40">bpm</span></p>
+              <p className="text-white text-lg font-bold tabular-nums">72 <span className="text-[10px] font-normal text-white/40">bpm</span></p>
               <div className="flex gap-0.5 mt-1.5 items-end h-4">
                 {[40, 60, 45, 80, 55, 90, 60, 75].map((h, i) => (
                   <div key={i} className="flex-1 rounded-sm" style={{ height: `${h * 0.16}px`, background: i === 5 ? VEYNS_BLUE : '#2B5BA840' }} />
                 ))}
               </div>
             </div>
-            <div className="rounded-xl p-3" style={{ background: '#132035' }}>
+            <div className="rounded-xl p-3" style={{ background: '#15305C' }}>
               <p className="text-white/50 text-[10px] mb-1">Recovery</p>
-              <p className="text-white text-lg font-bold font-mono">92%</p>
-              <div className="mt-1.5 h-1.5 rounded-full" style={{ background: '#1e3a5f' }}>
+              <p className="text-white text-lg font-bold tabular-nums">92%</p>
+              <div className="mt-1.5 h-1.5 rounded-full" style={{ background: '#27508A' }}>
                 <div className="h-full rounded-full" style={{ width: '92%', background: '#22c55e' }} />
               </div>
               <p className="text-green text-[10px] mt-1">Optimal</p>
@@ -217,11 +176,11 @@ function PhoneMockup() {
           </div>
 
           {/* Sleep card */}
-          <div className="rounded-xl p-3 mb-2.5" style={{ background: '#132035' }}>
+          <div className="rounded-xl p-3 mb-2.5" style={{ background: '#15305C' }}>
             <div className="flex justify-between items-center">
               <div>
                 <p className="text-white/50 text-[10px] mb-1">Sleep</p>
-                <p className="text-white text-base font-bold font-mono">7h 42m</p>
+                <p className="text-white text-base font-bold tabular-nums">7h 42m</p>
               </div>
               <div className="text-right">
                 <span className="text-[10px] font-medium px-2 py-0.5 rounded-full" style={{ color: VEYNS_ACCENT, background: `${VEYNS_BLUE}22` }}>
@@ -232,13 +191,13 @@ function PhoneMockup() {
             <div className="flex gap-1 mt-2 items-end h-5">
               {[20, 35, 45, 40, 60, 75, 70, 85, 78, 65, 50, 40].map((h, i) => (
                 <div key={i} className="flex-1 rounded-sm"
-                  style={{ height: `${h * 0.25}px`, background: i > 5 ? '#5B8DD960' : `${VEYNS_BLUE}30` }} />
+                  style={{ height: `${h * 0.25}px`, background: i > 5 ? '#3B72AA60' : `${VEYNS_BLUE}30` }} />
               ))}
             </div>
           </div>
 
           {/* Biomarkers */}
-          <div className="rounded-xl p-3" style={{ background: '#132035' }}>
+          <div className="rounded-xl p-3" style={{ background: '#15305C' }}>
             <p className="text-white/50 text-[10px] mb-2">Biomarkers</p>
             <div className="flex gap-1.5">
               {[
@@ -336,7 +295,7 @@ function WaitlistForm() {
       onSubmit={onSubmit}
       noValidate
       className="rounded-2xl bg-white p-5"
-      style={{ border: '1px solid #E4EBF9', boxShadow: `0 8px 32px ${VEYNS_BLUE}12` }}
+      style={{ border: '1px solid #DCE8F6', boxShadow: `0 8px 32px ${VEYNS_BLUE}12` }}
     >
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
@@ -447,7 +406,7 @@ function HeroSection() {
               <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: VEYNS_BLUE }} />
               Limited Early Affiliate Spots
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-[52px] font-black leading-[1.08] tracking-tight text-navy mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-[52px] leading-[1.08] tracking-tight text-navy mb-6">
               Earn 40% Recurring Commission With{' '}
               <span style={{ color: VEYNS_BLUE }}>Veyns</span>
             </h1>
@@ -465,7 +424,7 @@ function HeroSection() {
             <div className="flex items-center gap-6 mt-8 pt-8 border-t border-border">
               {[['40%', 'Recurring commission'], ['12 months', 'Paid per customer'], ['$15/mo', 'Subscription price']].map(([val, label]) => (
                 <div key={val}>
-                  <p className="text-lg font-bold text-navy font-mono">{val}</p>
+                  <p className="text-lg font-bold text-navy tabular-nums">{val}</p>
                   <p className="text-muted text-xs mt-0.5">{label}</p>
                 </div>
               ))}
@@ -490,7 +449,7 @@ function CommissionSection() {
       }} />
       <div className="max-w-7xl mx-auto px-6 text-center relative">
         <p className="text-veyns-accent text-sm font-semibold tracking-widest uppercase mb-4">Commission Structure</p>
-        <h2 className="text-3xl md:text-4xl font-black text-white mb-6">40% Recurring. For 12 Months.</h2>
+        <h2 className="text-3xl md:text-4xl text-white mb-6">40% Recurring. For 12 Months.</h2>
         <div className="relative inline-flex flex-col items-center mb-12">
           <span
             className="font-black leading-none select-none"
@@ -526,13 +485,13 @@ function CommissionSection() {
                 key={i}
                 className="flex-1 rounded-2xl p-6 text-center transition-transform hover:-translate-y-1"
                 style={{
-                  background: item.highlight ? `${VEYNS_BLUE}` : '#132035',
-                  border: `1px solid ${item.highlight ? VEYNS_BLUE : '#1e3a5f'}`,
+                  background: item.highlight ? `${VEYNS_BLUE}` : '#15305C',
+                  border: `1px solid ${item.highlight ? VEYNS_BLUE : '#27508A'}`,
                   maxWidth: '180px',
                 }}
               >
                 <p className="text-white/50 text-xs font-medium uppercase tracking-wider mb-2">{item.label}</p>
-                <p className="font-black text-white font-mono" style={{ fontSize: '2rem' }}>{item.value}</p>
+                <p className="font-black text-white tabular-nums" style={{ fontSize: '2rem' }}>{item.value}</p>
                 <p className="text-white/40 text-xs mt-0.5">{item.unit}</p>
                 <p className="text-white/50 text-[11px] mt-2">{item.sub}</p>
               </div>
@@ -561,7 +520,7 @@ function HowItWorksSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: VEYNS_BLUE }}>Process</p>
-          <h2 className="text-3xl md:text-4xl font-black text-navy">How the Veyns Affiliate Program Works</h2>
+          <h2 className="text-3xl md:text-4xl text-navy">How the Veyns Affiliate Program Works</h2>
         </div>
         <div className="grid md:grid-cols-4 gap-6 relative">
           {/* Connector line desktop */}
@@ -573,7 +532,7 @@ function HowItWorksSection() {
               style={{ background: VEYNS_LIGHT, border: `1px solid ${VEYNS_BLUE}18` }}
             >
               <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 font-bold text-white text-sm font-mono relative z-10"
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 font-bold text-white text-sm tabular-nums relative z-10"
                 style={{ background: VEYNS_BLUE }}
               >
                 {step.num}
@@ -601,11 +560,11 @@ function AudienceSection() {
     { icon: '📱', title: 'Content Creators', desc: 'Producing content for audiences who want to understand their bodies.' },
   ]
   return (
-    <section className="py-24 md:py-32" style={{ background: '#F7F9FF' }}>
+    <section className="py-24 md:py-32" style={{ background: '#F5F9FD' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-4">
           <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: VEYNS_BLUE }}>Ideal Affiliates</p>
-          <h2 className="text-3xl md:text-4xl font-black text-navy mb-4">Built For People Who Influence Better Health Decisions</h2>
+          <h2 className="text-3xl md:text-4xl text-navy mb-4">Built For People Who Influence Better Health Decisions</h2>
           <p className="text-body text-base max-w-lg mx-auto">
             If your audience cares about understanding their health, performance, recovery, or biomarkers, Veyns could be a natural fit.
           </p>
@@ -673,14 +632,14 @@ function WhyVeynsSection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: VEYNS_BLUE }}>Why Us</p>
-          <h2 className="text-3xl md:text-4xl font-black text-navy">More Than Another Affiliate Product</h2>
+          <h2 className="text-3xl md:text-4xl text-navy">More Than Another Affiliate Product</h2>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {features.map((f, i) => (
             <div
               key={i}
               className="rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group"
-              style={{ background: '#ffffff', border: `1px solid #E4EBF9` }}
+              style={{ background: '#ffffff', border: `1px solid #DCE8F6` }}
             >
               <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: VEYNS_LIGHT }}>
                 {f.icon}
@@ -714,22 +673,22 @@ function DashboardPreview() {
   ]
 
   return (
-    <section className="py-24 md:py-32" style={{ background: '#F7F9FF' }}>
+    <section className="py-24 md:py-32" style={{ background: '#F5F9FD' }}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: VEYNS_BLUE }}>Dashboard Preview</p>
-          <h2 className="text-3xl md:text-4xl font-black text-navy mb-3">Know Exactly What You're Earning</h2>
+          <h2 className="text-3xl md:text-4xl text-navy mb-3">Know Exactly What You're Earning</h2>
           <p className="text-muted text-base">Your affiliate dashboard gives you real-time visibility into every metric that matters.</p>
         </div>
 
         {/* Browser mockup */}
-        <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #E4EBF9', boxShadow: '0 24px 80px rgba(43,91,168,0.10)' }}>
+        <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid #DCE8F6', boxShadow: '0 24px 80px rgba(43,91,168,0.10)' }}>
           {/* Browser chrome */}
-          <div className="flex items-center gap-2 px-5 py-3.5" style={{ background: '#F0F4FB', borderBottom: '1px solid #E4EBF9' }}>
+          <div className="flex items-center gap-2 px-5 py-3.5" style={{ background: '#EDF3FA', borderBottom: '1px solid #DCE8F6' }}>
             <div className="w-3 h-3 rounded-full" style={{ background: '#fc5f57' }} />
             <div className="w-3 h-3 rounded-full" style={{ background: '#fdbc2c' }} />
             <div className="w-3 h-3 rounded-full" style={{ background: '#29ca41' }} />
-            <div className="flex-1 mx-4 px-4 py-1.5 rounded-lg bg-white text-xs text-muted font-mono border border-border max-w-xs">
+            <div className="flex-1 mx-4 px-4 py-1.5 rounded-lg bg-white text-xs text-muted tabular-nums border border-border max-w-xs">
               dashboard.veyns.com
             </div>
           </div>
@@ -754,10 +713,10 @@ function DashboardPreview() {
                 <div
                   key={i}
                   className="rounded-xl p-4 md:p-5 transition-all hover:shadow-md"
-                  style={{ background: i === 0 ? VEYNS_BLUE : '#F7F9FF', border: `1px solid ${i === 0 ? VEYNS_BLUE : '#E4EBF9'}` }}
+                  style={{ background: i === 0 ? VEYNS_BLUE : '#F5F9FD', border: `1px solid ${i === 0 ? VEYNS_BLUE : '#DCE8F6'}` }}
                 >
                   <p className={`text-xs font-medium uppercase tracking-wider mb-1.5 ${i === 0 ? 'text-white/70' : 'text-muted'}`}>{s.label}</p>
-                  <p className={`text-xl md:text-2xl font-black font-mono ${i === 0 ? 'text-white' : 'text-navy'}`}>{s.value}</p>
+                  <p className={`text-xl md:text-2xl font-black tabular-nums ${i === 0 ? 'text-white' : 'text-navy'}`}>{s.value}</p>
                   <p className={`text-xs mt-1 ${i === 0 ? 'text-white/50' : 'text-muted'}`}>{s.sub}</p>
                   <p className={`text-xs mt-2 font-medium ${s.up ? 'text-green' : 'text-muted'} ${i === 0 ? '!text-white/70' : ''}`}>
                     {s.up && s.trend !== 'Stable' ? '↑ ' : ''}{s.trend}
@@ -770,7 +729,7 @@ function DashboardPreview() {
             <div className="rounded-xl p-4 md:p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4" style={{ background: VEYNS_LIGHT, border: `1px solid ${VEYNS_BLUE}20` }}>
               <div className="flex-1 min-w-0">
                 <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: VEYNS_BLUE }}>Your Referral Link</p>
-                <p className="text-navy font-mono text-sm font-medium truncate">veyns.com/?ref=creatorname</p>
+                <p className="text-navy tabular-nums text-sm font-medium truncate">veyns.com/?ref=creatorname</p>
               </div>
               <button
                 onClick={handleCopy}
@@ -810,7 +769,7 @@ function EarlyAccessSection() {
     <section
       className="py-24 md:py-32 relative overflow-hidden"
       style={{
-        background: `linear-gradient(135deg, ${NAVY} 0%, #0f2545 60%, ${VEYNS_DARK} 100%)`,
+        background: `linear-gradient(135deg, ${NAVY} 0%, #123468 60%, ${VEYNS_DARK} 100%)`,
       }}
     >
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -844,7 +803,7 @@ function EarlyAccessSection() {
           </span>
         </div>
 
-        <h2 className="text-3xl md:text-4xl font-black text-white mb-5">The 40% Commission Is Limited</h2>
+        <h2 className="text-3xl md:text-4xl text-white mb-5">The 40% Commission Is Limited</h2>
         <p className="text-white/60 text-base md:text-lg leading-relaxed mb-10 max-w-xl mx-auto">
           We're reserving a limited number of early affiliate spots at the 40% recurring commission rate. Once these spots are filled, the commission rate for new affiliates may be significantly reduced.
         </p>
@@ -877,7 +836,7 @@ function RequirementsSection() {
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: VEYNS_BLUE }}>Requirements</p>
-          <h2 className="text-3xl md:text-4xl font-black text-navy">A Few Things We Ask From Our Affiliates</h2>
+          <h2 className="text-3xl md:text-4xl text-navy">A Few Things We Ask From Our Affiliates</h2>
         </div>
         <div className="space-y-3">
           {reqs.map((req, i) => (
@@ -942,18 +901,18 @@ function FAQSection() {
     },
   ]
   return (
-    <section id="faq" className="py-24 md:py-32" style={{ background: '#F7F9FF' }}>
+    <section id="faq" className="py-24 md:py-32" style={{ background: '#F5F9FD' }}>
       <div className="max-w-3xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold tracking-widest uppercase mb-3" style={{ color: VEYNS_BLUE }}>FAQ</p>
-          <h2 className="text-3xl md:text-4xl font-black text-navy">Frequently Asked Questions</h2>
+          <h2 className="text-3xl md:text-4xl text-navy">Frequently Asked Questions</h2>
         </div>
         <div className="space-y-2">
           {faqs.map((faq, i) => (
             <div
               key={i}
               className="rounded-2xl overflow-hidden"
-              style={{ background: '#ffffff', border: `1px solid ${open === i ? VEYNS_BLUE + '40' : '#E4EBF9'}` }}
+              style={{ background: '#ffffff', border: `1px solid ${open === i ? VEYNS_BLUE + '40' : '#DCE8F6'}` }}
             >
               <button
                 className="w-full flex items-center justify-between px-6 py-5 text-left group"
@@ -993,8 +952,8 @@ function FinalCTASection() {
   return (
     <section className="py-24 md:py-36" style={{ background: NAVY }}>
       <div className="max-w-3xl mx-auto px-6 text-center">
-        <VeynsLogo variant="light" size="lg" />
-        <h2 className="text-4xl md:text-5xl font-black text-white mt-10 mb-4 leading-tight">
+        <VeynsLogo className="mx-auto block h-10 w-auto" primary="#ffffff" secondary="rgba(255,255,255,0.68)" />
+        <h2 className="text-4xl md:text-5xl text-white mt-10 mb-4 leading-tight">
           Build With Veyns.<br />Earn With Veyns.
         </h2>
         <p className="text-white/60 text-lg leading-relaxed mb-10">
@@ -1016,12 +975,12 @@ function FinalCTASection() {
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer style={{ background: '#070f1a', borderTop: '1px solid #1a2d4a' }}>
+    <footer style={{ background: '#091C38', borderTop: '1px solid #1B3A63' }}>
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-4 gap-10 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <VeynsLogo variant="light" size="md" />
+            <VeynsLogo className="h-7 w-auto" primary="#ffffff" secondary="rgba(255,255,255,0.68)" />
             <p className="text-white/40 text-sm mt-3 mb-6">Health Data. Better Decisions.</p>
             <div className="flex gap-4">
               {[
@@ -1043,7 +1002,7 @@ function Footer() {
                   href="#"
                   aria-label={social.label}
                   className="w-9 h-9 rounded-lg flex items-center justify-center transition-all hover:opacity-80 hover:-translate-y-0.5"
-                  style={{ background: '#132035', border: '1px solid #1e3a5f' }}
+                  style={{ background: '#15305C', border: '1px solid #27508A' }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     {social.svg}
@@ -1074,7 +1033,7 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid #1a2d4a' }}>
+        <div className="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4" style={{ borderTop: '1px solid #1B3A63' }}>
           <p className="text-white/25 text-xs">© 2026 Veyns LLC. All rights reserved.</p>
           <p className="text-white/20 text-xs">Health Data. Better Decisions.</p>
         </div>
